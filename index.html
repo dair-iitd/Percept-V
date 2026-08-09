@@ -4,64 +4,517 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Percept-V: Can Multimodal LLMs Crack Simple Perception Problems?</title>
-<meta name="description" content="Percept-V is a benchmark of 6,000 program-generated images across 30 domains grounded in the TVPS-4 framework, testing the basic visual perception of multimodal LLMs.">
+<meta name="description" content="Percept-V is a benchmark of 6,000 program-generated images across 30 domains grounded in the TVPS-4 framework, testing the basic visual perception of multimodal LLMs. Humans score 95%; the best model reaches 67%.">
+<meta name="author" content="Samrajnee Ghosh, Ashish Goswami, Naman Agarwal, Hemanshu Garg, Chinmay Mittal, Mausam, Parag Singla">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Percept-V Challenge: Can Multimodal LLMs Crack Simple Perception Problems?">
+<meta property="og:description" content="A benchmark of 6,000 program-generated images across 30 domains grounded in the TVPS-4 cognitive framework. Humans score 95.4%; the best MLLM reaches 66.9%.">
+<meta property="og:image" content="static/images/figures/Radar_Chart.png">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁️</text></svg>">
-<style>
-  :root { color-scheme: light dark; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px;
-    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    background: #fff; color: #1a1c20; -webkit-font-smoothing: antialiased;
-  }
-  main { max-width: 640px; text-align: center; }
-  .venue {
-    display: inline-block; margin: 0 0 20px; font-size: 12px; font-weight: 600;
-    letter-spacing: .1em; text-transform: uppercase; color: #2f5fd0;
-    background: #eaf0fd; padding: 5px 12px; border-radius: 999px;
-  }
-  h1 { font-size: clamp(24px, 4.5vw, 34px); line-height: 1.2; letter-spacing: -.02em; margin: 0 0 8px; }
-  h1 span { display: block; font-size: .78em; font-weight: 600; color: #55595f; margin-top: 6px; }
-  .authors { color: #55595f; font-size: 15px; margin: 20px 0 4px; }
-  .affil { color: #868b93; font-size: 13.5px; margin: 0; }
-  .links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 28px 0 0; }
-  .links a {
-    display: inline-block; background: #1a1c20; color: #fff; text-decoration: none;
-    padding: 9px 20px; border-radius: 999px; font-size: 15px;
-  }
-  .links a:hover { opacity: .85; }
-  .soon {
-    margin: 32px 0 0; padding-top: 24px; border-top: 1px solid #e3e6ea;
-    color: #868b93; font-size: 14.5px;
-  }
-  @media (prefers-color-scheme: dark) {
-    body { background: #101317; color: #e6e9ee; }
-    .venue { color: #7aa2f7; background: #1c2740; }
-    h1 span, .authors { color: #a8aeb8; }
-    .affil, .soon { color: #79808b; }
-    .links a { background: #e6e9ee; color: #101317; }
-    .soon { border-top-color: #2a3038; }
-  }
-</style>
+<link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-<main>
-  <p class="venue">COLM 2026</p>
-  <h1>The Percept-V Challenge:<span>Can Multimodal LLMs Crack Simple Perception Problems?</span></h1>
 
-  <p class="authors">
-    Samrajnee Ghosh, Ashish Goswami, Naman Agarwal, Hemanshu Garg,<br>
-    Chinmay Mittal, Mausam, Parag Singla
-  </p>
-  <p class="affil">Indian Institute of Technology, Delhi</p>
-
-  <div class="links">
-    <a href="https://arxiv.org/abs/2508.21143">arXiv</a>
-    <a href="https://arxiv.org/pdf/2508.21143">Paper</a>
-    <a href="https://github.com/dair-iitd/Percept-V">Code &amp; Data</a>
+<nav class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">Percept-V</a>
+    <div class="topnav">
+      <a href="#abstract">Abstract</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#explorer">Domains</a>
+      <a href="#results">Results</a>
+      <a href="#human">Human&nbsp;Study</a>
+      <a href="#finetuning">Fine-tuning</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
   </div>
+</nav>
 
-  <p class="soon">Full project page coming soon.</p>
-</main>
+<header id="top" class="hero">
+  <div class="wrap">
+    <p class="venue">COLM 2026</p>
+    <h1 class="title">The Percept-V Challenge:<br><span class="title-sub">Can Multimodal LLMs Crack Simple Perception Problems?</span></h1>
+
+    <div class="authors">
+      <span><a href="https://www.linkedin.com/in/samrajnee-ghosh-3296761b6/">Samrajnee Ghosh</a><sup>1</sup></span>
+      <span><a href="https://alphacoder01.github.io/">Ashish Goswami</a><sup>2</sup></span>
+      <span><a href="https://www.linkedin.com/in/namannagarwal/">Naman Agarwal</a><sup>1</sup></span>
+      <span><a href="https://www.linkedin.com/in/hemanshu-garg-a66058251/">Hemanshu Garg</a><sup>1</sup></span>
+      <span><a href="https://www.linkedin.com/in/chinmay-mittal-733b75200/">Chinmay Mittal</a><sup>1</sup></span>
+      <span><a href="https://www.cse.iitd.ac.in/~mausam/index.html">Mausam</a><sup>1,2</sup></span>
+      <span><a href="https://www.cse.iitd.ac.in/~parags/">Parag Singla</a><sup>1,2</sup></span>
+    </div>
+    <div class="affil">
+      <span><sup>1</sup>Computer Science and Engineering</span>
+      <span><sup>2</sup>Yardi School of Artificial Intelligence</span>
+      <span>Indian Institute of Technology, Delhi</span>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="https://arxiv.org/pdf/2508.21143"><span class="ico">📄</span> Paper</a>
+      <a class="btn" href="https://arxiv.org/abs/2508.21143"><span class="ico">📚</span> arXiv</a>
+      <a class="btn" href="https://github.com/dair-iitd/Percept-V"><span class="ico">⌨</span> Code</a>
+      <a class="btn" href="https://github.com/dair-iitd/Percept-V"><span class="ico">🗂</span> Data</a>
+    </div>
+
+    <p class="tagline">
+      Modern MLLMs solve olympiad maths from an image. They cannot reliably count ten circles.
+      <strong>Percept-V</strong> isolates <em>basic visual perception</em> from reasoning and knowledge — and models fail.
+    </p>
+  </div>
+</header>
+
+<section class="stats-band">
+  <div class="wrap stats">
+    <div class="stat"><div class="stat-n">6,000</div><div class="stat-l">program-generated images</div></div>
+    <div class="stat"><div class="stat-n">30</div><div class="stat-l">domains &times; 20 problem sizes</div></div>
+    <div class="stat"><div class="stat-n">7</div><div class="stat-l">TVPS-4 perception skills</div></div>
+    <div class="stat hi"><div class="stat-n">95.4<span class="pc">%</span></div><div class="stat-l">human accuracy</div></div>
+    <div class="stat lo"><div class="stat-n">66.9<span class="pc">%</span></div><div class="stat-l">best model accuracy</div></div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── TEASER ─────────────────────────── -->
+<section class="section" id="teaser">
+  <div class="wrap">
+    <h2>One task per skill</h2>
+    <p class="lead">
+      Seven instances from Percept-V, one for each TVPS-4 skill. Each card shows the summarised prompt,
+      the gold answer, and GPT-4o's response. Every image is drawn by a Python program, so the gold answer
+      is known exactly and the image cannot have been seen during pre-training.
+    </p>
+    <div id="teaser-grid" class="teaser-grid"></div>
+    <p class="cap"><strong>Figure 1.</strong> Sample questions from Percept-V illustrating tasks related to different visual perception skills as defined by the TVPS-4 framework.</p>
+  </div>
+</section>
+
+<!-- ─────────────────────────── ABSTRACT ─────────────────────────── -->
+<section class="section alt" id="abstract">
+  <div class="wrap narrow">
+    <h2>Abstract</h2>
+    <p>
+      Cognitive science research treats visual perception, the ability to understand and make sense of a visual input,
+      as one of the early developmental signs of intelligence. Its TVPS-4 framework categorizes and tests human perception
+      into seven skills such as visual discrimination, and form constancy. Do Multimodal Large Language Models (MLLMs)
+      match up to humans in basic perception? Even though many benchmarks evaluate MLLMs on advanced reasoning and
+      knowledge skills, there is limited research that focuses evaluation on simple perception. In response, we introduce
+      <strong>Percept-V</strong>, a dataset containing 6000 program-generated uncontaminated images divided into 30 domains,
+      where each domain tests one or more TVPS-4 skills. Our focus is on perception, so we make our domains quite simple
+      and the reasoning and knowledge required for solving them are minimal. Since modern-day MLLMs can solve much more
+      complex tasks, our a-priori expectation is that they will solve these domains very easily. Contrary to our belief,
+      our experiments show a weak performance of SoTA proprietary and open-source MLLMs compared to very high human
+      performance on Percept-V. We find that as the number of objects in the image increases, performance goes down rather
+      fast. Our experiments also identify the perception skills that are considerably harder for all models. Fine-tuning an
+      open-source MLLM shows considerable gains in performance, though the gains only marginally carry over to other
+      related datasets, pointing to limitation in generalization abilities of the learned representations.
+      Code and data are available at <a href="https://github.com/dair-iitd/Percept-V">github.com/dair-iitd/Percept-V</a>.
+    </p>
+
+    <h3 class="mt">Key findings</h3>
+    <ul class="findings">
+      <li><strong>Models fail at tasks humans find trivial.</strong> The best model reaches 66.9% on the full dataset; humans score 95.4% on matched samples.</li>
+      <li><strong>Accuracy collapses with problem size.</strong> Reasoning models are near-perfect on the smallest instances and degrade sharply as objects are added — counting ten circles is the same operation as counting three.</li>
+      <li><strong>Some skills are consistently hard.</strong> Visual Closure and Visual Sequential Memory are the weakest across models; Visual Spatial Relationship is the easiest.</li>
+      <li><strong>In-context examples <em>hurt</em>.</strong> One-shot prompting degrades every proprietary model; three exemplars drop Gemini to 21.5%. Models import properties of the exemplar image into the target.</li>
+      <li><strong>Fine-tuning works in-domain but does not transfer.</strong> Qwen2.5-VL-7B goes from 18.1% → 84.3%, with almost no change on CV-Bench or Color-Bench.</li>
+      <li><strong>It is not resolution, not 2D abstraction, and not prompt wording.</strong> Upscaling 2×, re-rendering in Blender, and paraphrasing all leave the picture essentially unchanged.</li>
+      <li><strong>Thinking matters more than open vs. proprietary.</strong> Gemma-4-31B, an open-weight model, is the strongest overall; every thinking model outranks non-thinking GPT-4o.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─────────────────────────── DATASET ─────────────────────────── -->
+<section class="section" id="dataset">
+  <div class="wrap">
+    <h2>The dataset</h2>
+    <p class="lead">
+      Every instance is a pair <em>(Q, I)</em>: a domain-specific question prompt and a Python-generated image of
+      simple geometric objects. Ground truth is computed during generation, so there is no annotation noise and no
+      contamination. Each domain spans 20 problem sizes with 10 instances each — 200 per domain, 6,000 in total.
+    </p>
+
+    <div class="cards-3">
+      <div class="card">
+        <h3>Grounded in TVPS-4</h3>
+        <p>The Test of Visual Perceptual Skills is a standard clinical instrument for human perception. Its seven skills give the benchmark a construct that predates and is independent of LLMs.</p>
+      </div>
+      <div class="card">
+        <h3>Problem size is a dial</h3>
+        <p>Size 1–20 operationalises perceptual complexity: number of objects, grid dimension, distractors, or processing steps. This is what makes the scaling curves possible.</p>
+      </div>
+      <div class="card">
+        <h3>Plug-and-play generation</h3>
+        <p>One script per domain, driven by <code>--num_image</code> and <code>--num_size</code>. Any size of dataset can be regenerated on demand with fresh, unseen images.</p>
+      </div>
+    </div>
+
+    <h3 class="mt">The seven skills and the domains that use them</h3>
+    <p class="note">A domain may appear in several rows: solving its instances can require more than one skill.</p>
+    <div id="skill-table" class="skill-table"></div>
+    <p class="cap"><strong>Table 1.</strong> Domains using each skill. 17 domains test a single skill, 7 test two, and 6 test three jointly.</p>
+
+    <h3 class="mt">Answer formats</h3>
+    <p class="note">
+      Each prompt specifies its output format explicitly so that scoring is automatic. Proprietary models comply almost
+      perfectly — for them, errors come from perception rather than formatting. Open-weight models are noticeably worse:
+      DeepSeek fails the format on 61.6% of fixed-length answers, and even Gemma-4 and Qwen3-VL slip on 4–15%.
+    </p>
+    <div class="two-col">
+      <div class="table-scroll">
+        <table class="tbl compact">
+          <thead><tr><th>Type</th><th>Description</th><th class="num">Domains</th></tr></thead>
+          <tbody id="answer-type-body"></tbody>
+        </table>
+      </div>
+      <div class="table-scroll">
+        <table class="tbl compact">
+          <caption>Format error rate (%)</caption>
+          <thead><tr><th>Type</th><th class="num">GPT-5-mini</th><th class="num">GPT-4o</th><th class="num">o4-mini</th><th class="num">Gemini</th><th class="num">Gemma-4</th><th class="num">Qwen3-VL</th><th class="num">Qwen2.5-VL</th><th class="num">DeepSeek</th></tr></thead>
+          <tbody id="format-error-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── EXPLORER ─────────────────────────── -->
+<section class="section alt" id="explorer">
+  <div class="wrap">
+    <h2>Explore all 30 domains</h2>
+    <p class="lead">Filter by skill or answer type, then open a domain to see its exact prompt and a sample image at problem size 9.</p>
+
+    <div class="filters">
+      <div class="filter-group">
+        <span class="filter-label">Skill</span>
+        <div id="skill-filters" class="chips"></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Answer type</span>
+        <div id="answer-filters" class="chips"></div>
+      </div>
+      <input id="domain-search" class="search" type="search" placeholder="Search domains…" aria-label="Search domains">
+    </div>
+
+    <div id="domain-grid" class="domain-grid"></div>
+    <p id="domain-empty" class="empty" hidden>No domain matches those filters.</p>
+  </div>
+</section>
+
+<!-- ─────────────────────────── RESULTS ─────────────────────────── -->
+<section class="section" id="results">
+  <div class="wrap">
+    <h2>Results</h2>
+    <p class="lead">
+      Four proprietary models (GPT-5-mini, GPT-4o, o4-mini, Gemini 2.5 Flash) and four open-weight models
+      (Gemma-4-31B-it, Qwen3-VL-8B-Thinking, Qwen2.5-VL-7B-Instruct, DeepSeek-VL2-Tiny), zero-shot, temperature 0.
+      All except GPT-4o, Qwen2.5-VL and DeepSeek support “think with image”.
+      Cells are shaded by accuracy; click a column header to sort.
+    </p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-view="skill" role="tab">By skill</button>
+      <button class="tab" data-view="domain" role="tab">By domain</button>
+    </div>
+    <div class="table-scroll">
+      <table class="tbl heat" id="results-table">
+        <thead><tr id="results-head"></tr></thead>
+        <tbody id="results-body"></tbody>
+        <tfoot id="results-foot"></tfoot>
+      </table>
+    </div>
+    <p class="cap"><strong>Table 2.</strong> Comparison of MLLM performance across skills and domains (%), zero-shot.</p>
+
+    <div class="callouts">
+      <div class="callout">
+        <h4>Nothing is solved</h4>
+        <p>Gemma-4, the strongest model, is still ≤50% on 9 of 30 domains. GPT-4o is ≤50% on 24, o4-mini on 17, and DeepSeek-VL2-Tiny scores exactly 0.0% on 16.</p>
+      </div>
+      <div class="callout">
+        <h4>The floor: <code>colours_present</code></h4>
+        <p>2.62% average — the hardest domain for every model. It only asks which of 20 named colours appear, with swatches and a legend provided. Humans get 90%; the best model gets 6.67%.</p>
+      </div>
+      <div class="callout">
+        <h4>The ceiling: <code>inside_circles</code></h4>
+        <p>91.0% average. A single red dot, some circles, one yes/no answer. When the task reduces to one object relation, models are fine — the difficulty is in holding many objects at once.</p>
+      </div>
+      <div class="callout">
+        <h4>Thinking beats provenance</h4>
+        <p>Open-weight Gemma-4-31B tops the table at 66.9%, and Qwen3-VL-8B edges past GPT-4o. Every thinking model outranks non-thinking GPT-4o; the two non-thinking open models trail far behind.</p>
+      </div>
+    </div>
+
+    <h3 class="mt">Accuracy against problem size</h3>
+    <p class="note">
+      One panel per skill plus an average. Every model degrades monotonically as instances grow — the single most
+      consistent pattern in the paper.
+    </p>
+    <figure class="fig">
+      <img src="static/images/figures/Average_Accuracy_in_Skills_updated.png" alt="Line plots of accuracy versus problem size for each of the seven TVPS-4 skills plus an average panel, showing a consistent downward trend for all eight models." loading="lazy">
+      <figcaption><strong>Figure 2.</strong> Overall accuracy of all models across problem sizes, per skill.</figcaption>
+    </figure>
+
+    <h3 class="mt">Counting, OCR and grid understanding</h3>
+    <p class="note">
+      Three skills recur across the dataset outside the TVPS-4 taxonomy: counting (13 domains), OCR (9) and grid
+      understanding (7). Counting and OCR degrade sharply with size; grid tasks stay nearly flat for reasoning models,
+      plausibly a training-data effect. Counting is slightly harder for most reasoning models
+      (GPT-5-mini: 47.7 counting vs 60.9 non-counting), but Gemma-4 is the exception — it is <em>better</em> on
+      counting (70.5) than on non-counting (64.2). Either way, weak performance on non-counting domains shows that
+      counting alone does not explain the failures.
+    </p>
+    <figure class="fig">
+      <img src="static/images/figures/Average_Accuracy_in_Alternate_Skills.png" alt="Accuracy versus problem size for counting, grid understanding and OCR skills." loading="lazy">
+      <figcaption><strong>Figure 3.</strong> Accuracy across problem sizes for counting, grid understanding and OCR.</figcaption>
+    </figure>
+
+    <h3 class="mt">Single-skill domains</h3>
+    <p class="note">
+      Restricting to the 17 domains that require exactly one skill isolates skill difficulty. Visual Sequential Memory is
+      the weakest skill for 4 of 8 models; Visual Spatial Relationship is the strongest for all of them. Only five skills
+      appear — Visual Figure Ground and Visual Closure have no single-skill domains, and the number of domains per skill
+      varies sharply (vsr: 6, vm: 5, vfc: 3, vd: 2, vsm: 1), so the columns are not equally reliable.
+    </p>
+    <figure class="fig">
+      <img src="static/images/figures/Single_Skill_Difficulty_8models.png" alt="Bar chart of model accuracy on single-skill domains grouped by skill, one panel per model." loading="lazy">
+      <figcaption><strong>Figure 4.</strong> Average accuracy on single-skill domains, grouped by skill.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ─────────────────────────── HUMAN STUDY ─────────────────────────── -->
+<section class="section alt" id="human">
+  <div class="wrap">
+    <h2>Human study</h2>
+    <p class="lead">
+      16 college students answered randomly selected questions spanning all 30 domains and all problem sizes.
+      The models were evaluated on exactly the same samples under exactly the same protocol.
+    </p>
+    <div class="human-layout">
+      <div>
+        <div id="human-bars" class="bars"></div>
+        <p class="cap">
+          <strong>Table 3.</strong> Overall accuracy on the human-study samples. The gap to the closest MLLM,
+          Gemma-4-31B, is 26.7 points. On <code>colours_present</code> it is 90% versus 6.67%.
+        </p>
+      </div>
+      <figure class="fig tight">
+        <img src="static/images/figures/Radar_Chart.png" alt="Radar chart comparing human accuracy against seven models across the seven TVPS-4 skills; the human polygon encloses every model polygon." loading="lazy">
+        <figcaption><strong>Figure 5.</strong> Model accuracy versus human accuracy across the seven TVPS-4 skills.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── FINE-TUNING ─────────────────────────── -->
+<section class="section" id="finetuning">
+  <div class="wrap">
+    <h2>Fine-tuning</h2>
+    <p class="lead">
+      We build <em>Percept-V<sub>train</sub></em> — 60K samples, 2K per domain — and fine-tune Qwen2.5-VL-7B, varying
+      which modules are trainable: the language model (L), the vision encoder (V), and the MLP projector (P) between them.
+      Out-of-domain transfer is measured on CV-Bench and Color-Bench.
+    </p>
+    <div class="table-scroll">
+      <table class="tbl" id="ft-table">
+        <thead>
+          <tr>
+            <th>LLM</th><th>Vision<br>encoder</th><th>MLP<br>projector</th>
+            <th class="num">Percept-V<br>overall</th>
+            <th class="num">size<br>1–10</th>
+            <th class="num">size<br>11–20</th>
+            <th class="num sep">CV-Bench</th>
+            <th class="num">Color-Bench</th>
+          </tr>
+        </thead>
+        <tbody id="ft-body"></tbody>
+      </table>
+    </div>
+    <p class="cap">
+      <strong>Table 4.</strong> LoRA (rank 8) and full fine-tuning of Qwen2.5-VL-7B. LoRA ordering on Percept-V:
+      (L+V) &gt; (L+V+P) &gt; (L) &gt; (L+P) &gt; (V+P) &gt; (V) &gt; (P).
+    </p>
+
+    <div class="callouts">
+      <div class="callout">
+        <h4>+66 points in-domain</h4>
+        <p>18.1% → 84.3%. LoRA gets within 1 point of full fine-tuning, so the capability is a small, learnable delta rather than something the model fundamentally lacks capacity for.</p>
+      </div>
+      <div class="callout">
+        <h4>Almost no transfer</h4>
+        <p>CV-Bench moves 73.9 → 77.6 and Color-Bench 46.3 → 46.0. The model learns the tasks, not the perception. No catastrophic forgetting either.</p>
+      </div>
+      <div class="callout">
+        <h4>The projector is inert</h4>
+        <p>Training it alone gives 49.2. Adding it to the best pair <em>lowers</em> accuracy (83.4 → 80.3). One MLP cannot absorb the mismatch between the two modalities.</p>
+      </div>
+    </div>
+
+    <p class="note">
+      That the projector is inert may imply models struggle to query, align and transform visual information, and
+      motivates stronger interfaces between the vision and language modalities.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────── ANALYSES ─────────────────────────── -->
+<section class="section alt" id="analyses">
+  <div class="wrap">
+    <h2>Ruling out the easy explanations</h2>
+    <p class="lead">If models fail at counting circles, the natural objections are that the images are too small, too flat, or the prompts too odd. None of them hold.</p>
+
+    <div class="accordion" id="accordion">
+
+      <details open>
+        <summary><span class="sum-t">In-context examples make it worse</span><span class="sum-n">51.3% vs 54.8%</span></summary>
+        <div class="acc-body">
+          <p>One-shot prompting <em>degrades</em> every proprietary model. A short few-shot run with three examples on Gemini dropped average accuracy on Percept-V to 21.5%. Inspecting responses, models confuse the details of the in-context example with the problem to be solved, and hallucinate wrong theories after mis-perceiving the exemplar itself. Weak performance is therefore unlikely to be a task-understanding problem.</p>
+          <div class="table-scroll">
+            <table class="tbl compact"><thead><tr>
+              <th>Skill</th><th class="num">GPT-5-mini</th><th class="num">GPT-4o</th><th class="num">o4-mini</th><th class="num">Gemini</th>
+            </tr></thead><tbody id="oneshot-body"></tbody></table>
+          </div>
+          <p class="cap"><strong>Table 5.</strong> One-shot accuracy (%). Zero-shot averages of skills for reference: 54.77 / 29.26 / 53.63 / 52.27.</p>
+          <figure class="fig">
+            <img src="static/images/figures/Average_Accuracy_in_Skills_One_Shot.png" alt="Accuracy versus problem size in the one-shot setting, showing the same downward trends as zero-shot." loading="lazy">
+            <figcaption><strong>Figure 6.</strong> Accuracy across problem sizes in the one-shot setting.</figcaption>
+          </figure>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="sum-t">Resolution is not the bottleneck</span><span class="sum-n">+0.9 at 2&times;</span></summary>
+        <div class="acc-body">
+          <p>Percept-V images average 670&times;650 pixels. Upscaling 2&times; gives no benefit (GPT-5-mini 54.77 → 55.62; Qwen 14.64 → 15.01), so the information needed was already present — these are not failures of acuity. Downscaling 0.5&times; does hurt (−13.6 and −2.1), confirming the models genuinely read the images rather than guessing. The skills that suffer most under downscaling are exactly those requiring many small objects to be individuated at once.</p>
+          <div class="table-scroll">
+            <table class="tbl compact"><thead>
+              <tr><th rowspan="2">Skill</th><th class="num sep" colspan="3">GPT-5-mini</th><th class="num sep" colspan="3">Qwen2.5-VL</th></tr>
+              <tr><th class="num sep">Orig.</th><th class="num">2&times;</th><th class="num">0.5&times;</th><th class="num sep">Orig.</th><th class="num">2&times;</th><th class="num">0.5&times;</th></tr>
+            </thead><tbody id="res-body"></tbody></table>
+          </div>
+          <p class="cap"><strong>Table 6.</strong> Accuracy (%) at original, 2&times; and 0.5&times; resolution.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="sum-t">3D rendering does not rescue it</span><span class="sum-n">73.5% &rarr; 55.3%</span></summary>
+        <div class="acc-body">
+          <p>A potential criticism of Percept-V is that its images are auto-generated and may not occur naturally in a model's training data. Would models do better on more realistic images? Six domains were rebuilt as 3D Blender scenes in the style of CLEVR — solid forms, naturalistic lighting, cast shadows — with 100 images each over sizes 1–10. Even at these small problem sizes, where 2D accuracy is comparatively high, 3D performance stays sub-par: GPT-5-mini gets <em>worse</em> on all six domains, falling 18 points overall. Qwen, already near its floor, gains slightly on the two counting domains, plausibly because shading separates adjacent objects that flat silhouettes leave ambiguous. Neither model improves where it would matter most: <code>colours_present</code> stays at 9.0 and 0.0. Photorealism redistributes difficulty rather than removing it.</p>
+          <figure class="fig">
+            <img src="static/images/figures/3d_percept-v.jpg" alt="Grid of example images from 3D-Percept-V rendered in Blender, showing solid shapes with realistic lighting and shadows." loading="lazy">
+            <figcaption><strong>Figure 7.</strong> Examples from 3D-Percept-V, created via Blender for a subset of domains.</figcaption>
+          </figure>
+          <div class="table-scroll">
+            <table class="tbl compact"><thead>
+              <tr><th rowspan="2">Domain</th><th class="num sep" colspan="2">GPT-5-mini</th><th class="num sep" colspan="2">Qwen2.5-VL</th></tr>
+              <tr><th class="num sep">2D</th><th class="num">3D</th><th class="num sep">2D</th><th class="num">3D</th></tr>
+            </thead><tbody id="threed-body"></tbody></table>
+          </div>
+          <p class="cap"><strong>Table 7.</strong> Accuracy (%) on six domains rendered in 2D and 3D, matched on problem sizes 1–10.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="sum-t">Prompt wording barely matters</span><span class="sum-n">&plusmn;1 point</span></summary>
+        <div class="acc-body">
+          <p>The original prompts were paraphrased into concise and verbose styles. Average of skills moves by about one point for both models, and the original chain-of-thought style prompting is often the best of the three. Concise beats verbose for both.</p>
+          <div class="table-scroll">
+            <table class="tbl compact"><thead>
+              <tr><th rowspan="2">Skill</th><th class="num sep" colspan="2">GPT-5-mini</th><th class="num sep" colspan="2">Qwen2.5-VL</th></tr>
+              <tr><th class="num sep">Concise</th><th class="num">Verbose</th><th class="num sep">Concise</th><th class="num">Verbose</th></tr>
+            </thead><tbody id="prompt-body"></tbody></table>
+          </div>
+          <p class="cap"><strong>Table 8.</strong> Accuracy (%) across prompting styles.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="sum-t">Ordered answers are harder than unordered ones</span><span class="sum-n">list vs set</span></summary>
+        <div class="acc-body">
+          <p>Breaking accuracy down by answer type across problem sizes shows that thinking models (GPT-5-mini, Gemini, o4-mini) are relatively robust to size for the unordered <em>set</em> type, but not for the ordered <em>list</em> type. Producing an answer in the right order is a distinct challenge from producing the right elements.</p>
+          <figure class="fig">
+            <img src="static/images/figures/Average_Accuracy_in_Skills_Answer_Type.png" alt="Accuracy versus problem size split by answer type: single, fixed, list and set." loading="lazy">
+            <figcaption><strong>Figure 8.</strong> Accuracy across problem sizes by answer type.</figcaption>
+          </figure>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="sum-t">Neither short-term nor long-term visual memory holds up</span><span class="sum-n">1.23%</span></summary>
+        <div class="acc-body">
+          <p>In TVPS-4, human short-term memory is tested by showing an image, removing it, and only then asking the question — so the person must convert the image into a mental representation without knowing what will be asked. The same thing arguably happens in an MLLM forward pass: the visual encoder pre-processes the image into a question-independent sequence of latent tokens, and those tokens, held in the context window, act as the model's transient short-term memory. Percept-V therefore tests the fidelity and capacity of that representation.</p>
+          <p>The cognitive counterpart, recalling an image that is gone entirely, maps onto retrieving visual information stored in the model's weights. A two-phase experiment tests this directly: Qwen2.5-VL-7B is fine-tuned on (image → unique text ID) pairs, forcing each image into parametric memory; at test time the image is withheld and the model receives only the ID plus the domain question. Accuracy collapses to <strong>1.23%</strong>. MLLMs thus fail at both maintaining short-term visual representations and retrieving long-term visual memories.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── BIBTEX ─────────────────────────── -->
+<section class="section" id="bibtex">
+  <div class="wrap narrow">
+    <h2>BibTeX</h2>
+    <div class="code-wrap">
+      <button class="copy-btn" id="copy-bib">Copy</button>
+      <pre id="bib"><code>@article{ghosh2025percept,
+        title={The Percept-V Challenge: Can Multimodal LLMs Crack Simple Perception Problems?},
+        author={Ghosh, Samrajnee and Agarwal, Naman and Garg, Hemanshu and Mittal, Chinmay and Singla, Parag and others},
+        journal={arXiv preprint arXiv:2508.21143},
+        year={2025}
+      }</code></pre>
+    </div>
+
+    <h3 class="mt">Acknowledgements</h3>
+    <p class="note">
+      Mausam is supported by grants from Google, Microsoft, Wipro, Verisk, Tower Research and the Nick McKeown Chair
+      Professorship. Parag Singla is supported by the Shanthi and K Ananth Krishnan Young Faculty Chair Professorship.
+      Parag and Mausam are supported by the IBM AI Horizon Networks (AIHN) grant. We thank the IIT Delhi HPC compute
+      facility, the Microsoft AFMR program and the Google Gemini Credits grant for access to compute and LLM API calls,
+      and the Yardi School of Artificial Intelligence for a travel grant. Any opinions, findings, conclusions or
+      recommendations expressed here are those of the authors and do not necessarily reflect the views or official
+      policies of the funding agencies.
+    </p>
+
+    <h3 class="mt">Ethical considerations</h3>
+    <p class="note">
+      All human participants were shown the instructions to be followed during the experiment and volunteered to
+      participate. All participants gave consent and were financially compensated. The study collected no personally
+      identifying information — participants simply answered simple perception questions.
+    </p>
+
+    <h3 class="mt">Limitations</h3>
+    <p class="note">
+      The human baseline is drawn from a limited pool of adult college students; future work should include annotators
+      from different age groups and educational backgrounds. This work identifies the perceptual weaknesses of MLLMs but
+      does not fully investigate the underlying causes.
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>
+      <a href="https://www.cse.iitd.ac.in/~mausam/">DAIR Lab</a>, IIT Delhi &nbsp;·&nbsp;
+      <a href="https://github.com/dair-iitd/Percept-V">github.com/dair-iitd/Percept-V</a>
+    </p>
+    <p class="fine">
+      This page borrows its layout conventions from the
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>.
+      Released under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> licence.
+    </p>
+  </div>
+</footer>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <img id="lb-img" alt="">
+</div>
+
+<script src="static/js/data.js"></script>
+<script src="static/js/main.js"></script>
 </body>
 </html>
