@@ -442,13 +442,13 @@
         </div>
       </details>
 
-      <details>
+      <!-- <details>
         <summary><span class="sum-t">Neither short-term nor long-term visual memory holds up</span><span class="sum-n">1.23%</span></summary>
         <div class="acc-body">
           <p>In TVPS-4, human short-term memory is tested by showing an image, removing it, and only then asking the question — so the person must convert the image into a mental representation without knowing what will be asked. The same thing arguably happens in an MLLM forward pass: the visual encoder pre-processes the image into a question-independent sequence of latent tokens, and those tokens, held in the context window, act as the model's transient short-term memory. Percept-V therefore tests the fidelity and capacity of that representation.</p>
           <p>The cognitive counterpart, recalling an image that is gone entirely, maps onto retrieving visual information stored in the model's weights. A two-phase experiment tests this directly: Qwen2.5-VL-7B is fine-tuned on (image → unique text ID) pairs, forcing each image into parametric memory; at test time the image is withheld and the model receives only the ID plus the domain question. Accuracy collapses to <strong>1.23%</strong>. MLLMs thus fail at both maintaining short-term visual representations and retrieving long-term visual memories.</p>
         </div>
-      </details>
+      </details> -->
 
     </div>
   </div>
@@ -468,32 +468,6 @@
       }</code></pre>
     </div>
 
-    <h3 class="mt">Acknowledgements</h3>
-    <p class="note">
-      Mausam is supported by grants from Google, Microsoft, Wipro, Verisk, Tower Research and the Nick McKeown Chair
-      Professorship. Parag Singla is supported by the Shanthi and K Ananth Krishnan Young Faculty Chair Professorship.
-      Parag and Mausam are supported by the IBM AI Horizon Networks (AIHN) grant. We thank the IIT Delhi HPC compute
-      facility, the Microsoft AFMR program and the Google Gemini Credits grant for access to compute and LLM API calls,
-      and the Yardi School of Artificial Intelligence for a travel grant. Any opinions, findings, conclusions or
-      recommendations expressed here are those of the authors and do not necessarily reflect the views or official
-      policies of the funding agencies.
-    </p>
-
-    <h3 class="mt">Ethical considerations</h3>
-    <p class="note">
-      All human participants were shown the instructions to be followed during the experiment and volunteered to
-      participate. All participants gave consent and were financially compensated. The study collected no personally
-      identifying information — participants simply answered simple perception questions.
-    </p>
-
-    <h3 class="mt">Limitations</h3>
-    <p class="note">
-      The human baseline is drawn from a limited pool of adult college students; future work should include annotators
-      from different age groups and educational backgrounds. This work identifies the perceptual weaknesses of MLLMs but
-      does not fully investigate the underlying causes.
-    </p>
-  </div>
-</section>
 
 <footer class="footer">
   <div class="wrap">
