@@ -1,0 +1,2 @@
+- The last line of the output should be a space-separated list of the coordinates of the cells which contain a green circle.
+- The coordinates should be in the format (row,column) withh the comma and bracket.

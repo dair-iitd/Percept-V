@@ -1,0 +1,1 @@
+- Count the total number of circles in the image

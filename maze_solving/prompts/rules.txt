@@ -1,0 +1,5 @@
+- You start from the cell labelled S. 
+- Your goal is to reach cell labelled E through the shortest path possible. 
+- You can move up, down, left or right. 
+- You cannot move through the black walls. 
+- You can only move through white cells. 

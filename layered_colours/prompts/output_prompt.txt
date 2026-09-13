@@ -1,0 +1,2 @@
+- The output should be written in a single line as a comma-separated list of colours, written in order from the innermost colour to the outermost colour
+- For example, the output should be of the form COLOURS: Colour 1 , Colour 2 and so on.

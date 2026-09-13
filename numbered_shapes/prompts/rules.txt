@@ -1,0 +1,1 @@
+- Determine the list of numbers written on top of the circles.

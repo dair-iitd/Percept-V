@@ -1,0 +1,3 @@
+- The quadrants are numbered in the default way i.e. quadrant 1 is the rightmost and topmost quadrant, quadrant 2 is the leftmost and topmost, quadrant 3 is the leftmost and lowest and quadrant 4 is the rightmost and lowest.
+- Determine the quadrant with the most number of black circles and the count of black circles in that quadrant.
+- In case of a tie, return the lesser quadrant number.

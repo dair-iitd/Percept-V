@@ -1,0 +1,2 @@
+- The coordinate of a cell is given by the row number followed by the column number.
+- Write down all the coordinates of the cells which contain a green circle.

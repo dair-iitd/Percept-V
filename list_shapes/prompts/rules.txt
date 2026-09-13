@@ -1,0 +1,3 @@
+- The shapes belong to the following list - [circle, triangle, square, pentagon]
+- Identify the shapes drawn over the background image
+- Form a set of all the unique shapes seen in the image

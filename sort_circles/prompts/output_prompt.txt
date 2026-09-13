@@ -1,0 +1,1 @@
+- Output must only contain the space separated labels of circles in their sorted order by size.

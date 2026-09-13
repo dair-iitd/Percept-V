@@ -1,0 +1,2 @@
+- The colours of the circles at the same position in the two images may be different.
+- Count the number of differently coloured circles between the two images.

@@ -1,0 +1,2 @@
+- The output should be written in a single line as a comma-separated list of yes or no, written in order of the given list of colours.
+- For example, the output should be of the form ANSWER: yes , no, no, yes and so on.

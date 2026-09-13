@@ -1,0 +1,3 @@
+- This image contains some shapes that are layered on top of each other in a white background.
+- The shapes colud be of the following types - [circle, diamond, hexagon, octagon] 
+- The image could also contain a single shape with no other shapes layered on top of it.

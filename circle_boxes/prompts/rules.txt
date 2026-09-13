@@ -1,0 +1,3 @@
+- Some circles are on the left side of the partition whereas some are on the right. Note that, a side of the image may be completely empty as well.
+- Determine the number of circles to be moved from the side with more number of circles to the side with less number of circles so that each side has equal number of circles.
+- In case of both the sides having equal number of circles, return zero.

@@ -1,0 +1,3 @@
+- The first image consists of rows of shapes and the second image consists of rows of outlines of shapes
+- Determine the number of shapes in the first image that match the outlines in the corresponding row in the second image.
+- In case each of the two images contain only a single shape, treat the single shape in each image as a row.

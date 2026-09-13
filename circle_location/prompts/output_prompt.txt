@@ -1,0 +1,1 @@
+- The output must be given in a single line in the form of QUADRANT:x COUNT:y where x is the quadrant number and y is the count of circles.

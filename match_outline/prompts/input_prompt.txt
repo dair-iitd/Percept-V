@@ -1,0 +1,2 @@
+- These are two images of some sequence of shapes separated by black horizontal lines
+- The two images may also contain a single shape each

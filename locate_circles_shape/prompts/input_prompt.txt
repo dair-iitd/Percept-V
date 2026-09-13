@@ -1,0 +1,2 @@
+- This is a grid which contains some coloured circles , rectangles and triangles.
+- The rows and columns are numbered in the grid.

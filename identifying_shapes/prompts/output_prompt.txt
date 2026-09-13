@@ -1,0 +1,3 @@
+- The ouput should have only a single line containing the answer.
+- The output format should be "ANSWER:" followed by the space seperated shape names.
+- For example, ANSWER: Circle Triangle Circle

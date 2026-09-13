@@ -1,0 +1,2 @@
+- This is a grid containing some black X.
+- Each cell is given a coordinate (x,y) which is (row,column) with 0 based indexing.

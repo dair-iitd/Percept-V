@@ -1,0 +1,1 @@
+- There will be an image containing a rectangle and some circles above and below it

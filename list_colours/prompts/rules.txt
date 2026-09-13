@@ -1,0 +1,4 @@
+- The colours belong to the following list - [black, gray, brown, maroon, red, coral, tan, orange, ivory, goldenrod, yellow, green, olive, turquoise, skyblue, blue, lavender, purple, pink, fuchsia]
+- No colour is repeated
+- Identify the colour of the shapes drawn over the background image
+- Form a list of all the colours of the shapes

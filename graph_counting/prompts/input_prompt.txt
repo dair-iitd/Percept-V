@@ -1,0 +1,3 @@
+- This is a graph where the blue colored circles are nodes and the lines joining them are edges.
+- The graph may contain a single blue node with no edges.
+- The graph may be disconnected.

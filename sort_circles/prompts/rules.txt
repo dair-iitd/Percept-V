@@ -1,0 +1,2 @@
+- Sort these circles by size, from smallest to largest.
+- If there is only a single circles, give the number written on that circle.

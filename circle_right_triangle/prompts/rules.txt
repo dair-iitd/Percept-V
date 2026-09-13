@@ -1,0 +1,1 @@
+- Check if any triangle cell has a circle cell to its immediate right.

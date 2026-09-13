@@ -1,0 +1,2 @@
+- The images are identical except for the fact that the second image has a few objects missing
+- Count the number of missing objects in the secnd image

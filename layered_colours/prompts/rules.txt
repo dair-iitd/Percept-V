@@ -1,0 +1,4 @@
+- Write down the sequence of colours seen from inside to outside.
+- In case of a single circle in the image, write down the colour of that circle.
+- The colours belong to the following list - [black, gray, brown, maroon, red, coral, tan, orange, ivory, goldenrod, yellow, green, olive, turquoise, skyblue, blue, lavender, purple, pink, fuchsia]
+- No colour is repeated

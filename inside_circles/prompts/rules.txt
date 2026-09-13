@@ -1,0 +1,2 @@
+- Determine if the red dot is contained inside any circle in the image
+- Note that a circle containing the red dot means the centre of the dot is present inside the circumference of the circle

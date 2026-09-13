@@ -1,0 +1,2 @@
+- The last line of the output should be a comma-separated list of shapes without colors, written in order from top to bottom of form SHAPES : Shape 1 , Shape 2 and so on.
+- If there is a single shape then write SHAPES : shape-name where shape-name is the name of the shape seen

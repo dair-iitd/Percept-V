@@ -1,0 +1,2 @@
+- The last line of the output should be of form "ANSWER:" followed by the space separated color answers for all the rows in the image.
+- For example ANSWER: Blue Green Blue

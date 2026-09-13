@@ -1,0 +1,2 @@
+- Give the sequence of cells taken to go from S to E.   
+- Last line of output should be a comma separated line with cell numbers starting with S and ending at E and nothing else.

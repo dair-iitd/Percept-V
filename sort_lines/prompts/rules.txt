@@ -1,0 +1,2 @@
+- Sort these lines by length, from shortest to longest.
+- If there is only a single line, give the number of that line.

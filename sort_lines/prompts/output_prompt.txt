@@ -1,0 +1,1 @@
+- Last line of the output must only contain the space separated labels of thee lines in their sorted order by length and nothing else.

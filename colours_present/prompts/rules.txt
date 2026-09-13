@@ -1,0 +1,3 @@
+- The colours belong to the following list - [black, gray, brown, maroon, red, coral, tan, orange, ivory, goldenrod, yellow, green, olive, turquoise, skyblue, blue, lavender, purple, pink, fuchsia]
+- No colour is repeated
+- Produce a list of yes or no; write yes in the list if the colour at the corresponding index of the above list is present and no if it is absent. 

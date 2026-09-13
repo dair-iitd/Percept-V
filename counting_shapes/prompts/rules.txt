@@ -1,0 +1,1 @@
+- Count the number of circles, triangles and sqaures in the image

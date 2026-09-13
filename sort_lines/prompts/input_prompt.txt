@@ -1,0 +1,2 @@
+- The image has several parallel lines of varying lengths.
+- The image may also contain only a single line.

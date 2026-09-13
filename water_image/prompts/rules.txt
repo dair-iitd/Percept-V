@@ -1,0 +1,4 @@
+- The image consists of a horizontal blue line at the centre.
+- Some objects of the first image are mirrored along the given horizontal line in the second image.
+- Other objects in the second image maintain the same postions as in the first image.
+- Determine the number of objects that are mirrored along the horizontal line in the second image.

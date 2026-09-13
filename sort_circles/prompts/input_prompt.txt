@@ -1,0 +1,2 @@
+- There are several black circles with different sizes.
+- The image may also have a single black circle.

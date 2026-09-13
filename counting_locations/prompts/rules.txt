@@ -1,0 +1,1 @@
+- Count the number of circles above the rectangle and below the rectangle

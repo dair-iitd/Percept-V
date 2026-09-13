@@ -1,0 +1,4 @@
+- An adjacent cell to a cell A is any cell sharing an edge with A
+- A safe cell is a cell that is not adjacent to any black X.
+- Output the coordinates of any one safe cell as labelled in the grid.
+- If no such cell exists output None.

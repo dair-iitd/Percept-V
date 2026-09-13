@@ -1,0 +1,2 @@
+- Identify the shape present in each row.
+- In case there is a single shape, treat it as a single row.
