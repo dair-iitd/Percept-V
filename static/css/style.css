@@ -17,6 +17,9 @@
   --bad-bg:    #fbeae8;
   --warn-bg:   #fdf6e0;
   --warn-line: #e9d799;
+  --frontier:    #c27410;
+  --frontier-fg: #9a5a08;
+  --frontier-bg: #fdf3e4;
   --shadow:    0 1px 2px rgba(16,20,28,.05), 0 4px 16px rgba(16,20,28,.05);
   --radius:    10px;
   --maxw:      1120px;
@@ -45,6 +48,9 @@ html:not([data-theme="light"]) body.dark-auto {
     --bad-bg:    #331b19;
     --warn-bg:   #2b2716;
     --warn-line: #55491f;
+    --frontier:    #e5a04a;
+    --frontier-fg: #f0b867;
+    --frontier-bg: #2a2114;
     --shadow:    0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
     color-scheme: dark;
   }
@@ -67,6 +73,9 @@ html:not([data-theme="light"]) body.dark-auto {
   --bad-bg:    #331b19;
   --warn-bg:   #2b2716;
   --warn-line: #55491f;
+  --frontier:    #e5a04a;
+  --frontier-fg: #f0b867;
+  --frontier-bg: #2a2114;
   --shadow:    0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
 }
 
@@ -316,6 +325,11 @@ h4 { font-size: 15.5px; font-weight: 650; margin: 0 0 6px; }
 #ft-table tr.ft-section td { text-align: left; }
 
 .heat thead th[data-col] { cursor: pointer; user-select: none; }
+/* results table breaks out of the text column so the frontier columns fit on desktop */
+.table-scroll.wide {
+  position: relative; left: 50%; transform: translateX(-50%);
+  width: min(1240px, calc(100vw - 32px));
+}
 .heat thead th[data-col]:hover { color: var(--accent); }
 .heat thead th .arrow { opacity: .45; font-size: 10px; margin-left: 3px; }
 .heat td.cell { position: relative; }
@@ -323,6 +337,29 @@ h4 { font-size: 15.5px; font-weight: 650; margin: 0 0 6px; }
   display: block; font-size: 10px; font-weight: 600; letter-spacing: .04em;
   text-transform: uppercase; color: var(--fg-faint); font-weight: 500;
 }
+
+/* frontier reference columns (added after publication, not in the paper) */
+.tbl .frontier-first { border-left: 2px dashed var(--frontier); }
+.tbl thead th.frontier { color: var(--frontier-fg); background: var(--frontier-bg); }
+.tbl thead th.frontier .tag-fam { color: var(--frontier-fg); opacity: .8; }
+.heat thead th.frontier[data-col]:hover { color: var(--frontier); }
+.tbl tfoot td.frontier { background: var(--frontier-bg); color: var(--frontier-fg); }
+.frontier-inline { color: var(--frontier-fg); font-weight: 600; }
+
+.frontier-note {
+  margin-top: 22px; padding: 16px 20px;
+  background: var(--frontier-bg); border-left: 3px solid var(--frontier);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.frontier-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--frontier-fg);
+}
+.frontier-quote {
+  font-size: 19px; font-weight: 650; letter-spacing: -.01em; line-height: 1.35;
+  margin: 6px 0 10px;
+}
+.frontier-note p:last-child { margin: 0; color: var(--fg-soft); font-size: 14.6px; }
 
 .two-col { display: grid; grid-template-columns: minmax(240px, .8fr) 1.6fr; gap: 26px; align-items: start; }
 

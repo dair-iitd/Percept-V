@@ -119,11 +119,15 @@
   const head = $("#results-head"), body = $("#results-body"), foot = $("#results-foot");
   let view = "skill", sortCol = null, sortDir = -1;
 
-  function heatStyle(v) {
+  function heatStyle(v, colorVar) {
     // 0 → neutral, 100 → strong accent. Keeps text legible in both themes.
     const t = Math.max(0, Math.min(100, v)) / 100;
-    return `background: color-mix(in srgb, var(--accent) ${(t * 26).toFixed(1)}%, transparent)`;
+    return `background: color-mix(in srgb, var(${colorVar || "--accent"}) ${(t * 26).toFixed(1)}%, transparent)`;
   }
+
+  // Columns: 0 = name, 1..N = paper models, N+1 = paper Avg., N+2.. = frontier models (not in paper).
+  const AVG_COL = MODELS.length + 1;
+  const cellValue = (r, c) => (c <= AVG_COL ? r[c] : FRONTIER_RESULTS[r[0]][c - AVG_COL - 1]);
 
   function buildHead() {
     head.innerHTML = "";
@@ -141,6 +145,16 @@
     avg.dataset.col = String(MODELS.length + 1);
     avg.textContent = "Avg.";
     head.appendChild(avg);
+    FRONTIER_MODELS.forEach((m, i) => {
+      const th = el("th", "num frontier" + (i === 0 ? " frontier-first" : ""));
+      th.dataset.col = String(AVG_COL + 1 + i);
+      th.title = m.label + ": frontier reference, evaluated after publication; not part of the paper";
+      th.appendChild(document.createTextNode(m.head[0]));
+      th.appendChild(el("br"));
+      th.appendChild(document.createTextNode(m.head[1]));
+      th.appendChild(el("span", "tag-fam", "not in paper"));
+      head.appendChild(th);
+    });
 
     $$("th[data-col]", head).forEach(th => {
       const c = Number(th.dataset.col);
@@ -161,7 +175,7 @@
     const rows = src.slice();
     if (sortCol !== null) {
       rows.sort((a, b) => {
-        const x = a[sortCol], y = b[sortCol];
+        const x = cellValue(a, sortCol), y = cellValue(b, sortCol);
         if (typeof x === "string") return sortDir * x.localeCompare(y);
         return sortDir * (x - y);
       });
@@ -178,7 +192,16 @@
         tr.appendChild(td);
       }
       tr.appendChild(el("td", "num sep", fmt(r[MODELS.length + 1])));
+      appendFrontier(tr, r[0], true);
       body.appendChild(tr);
+    });
+  }
+
+  function appendFrontier(tr, rowName, heat) {
+    FRONTIER_RESULTS[rowName].forEach((v, i) => {
+      const td = el("td", "num frontier" + (i === 0 ? " frontier-first" : "") + (heat ? " cell" : ""), fmt(v));
+      if (heat) td.setAttribute("style", heatStyle(v, "--frontier"));
+      tr.appendChild(td);
     });
   }
 
@@ -192,6 +215,7 @@
       tr.appendChild(el("td", "num" + (r[i] === best ? " best" : ""), fmt(r[i])));
     }
     tr.appendChild(el("td", "num sep", fmt(r[MODELS.length + 1])));
+    appendFrontier(tr, r[0], false);
     foot.appendChild(tr);
   }
 

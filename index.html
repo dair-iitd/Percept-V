@@ -212,14 +212,16 @@
       Four proprietary models (GPT-5-mini, GPT-4o, o4-mini, Gemini 2.5 Flash) and four open-weight models
       (Gemma-4-31B-it, Qwen3-VL-8B-Thinking, Qwen2.5-VL-7B-Instruct, DeepSeek-VL2-Tiny), zero-shot, temperature 0.
       All except GPT-4o, Qwen2.5-VL and DeepSeek support “think with image”.
-      Cells are shaded by accuracy; click a column header to sort.
+      Cells are shaded by accuracy; click a column header to sort. The two
+      <span class="frontier-inline">amber columns</span> on the right are frontier models added after publication
+      for reference; they are not part of the paper and are excluded from “Avg.”
     </p>
 
     <div class="tabs" role="tablist">
       <button class="tab active" data-view="skill" role="tab">By skill</button>
       <button class="tab" data-view="domain" role="tab">By domain</button>
     </div>
-    <div class="table-scroll">
+    <div class="table-scroll wide">
       <table class="tbl heat" id="results-table">
         <thead><tr id="results-head"></tr></thead>
         <tbody id="results-body"></tbody>
@@ -227,6 +229,17 @@
       </table>
     </div>
     <p class="cap"><strong>Table 2.</strong> Comparison of MLLM performance across skills and domains (%), zero-shot.</p>
+
+    <aside class="frontier-note">
+      <div class="frontier-label">Added after publication &middot; not in the paper</div>
+      <p class="frontier-quote">You should not need a trillion-parameter model to be good at basic perception.</p>
+      <p>
+        To see where the absolute state of the art stands, we ran two frontier models, Gemini 3.5 Flash and
+        Gemini 3.8 Flash, on the full benchmark with the same prompts, scoring and zero-shot protocol. They reach
+        <strong>88.57%</strong> and <strong>91.63%</strong>, far above the best model in the paper (66.92%).
+        Even so, they are not uniformly good.<code>layered_shapes</code> is at 29–36%, and <code>sort_circles</code> is under 60%. Frontier scale narrows the gap on most domains, but tasks humans find trivial remain unsolved. The open question Percept-V poses is how to get this level of perception from much smaller models.
+      </p>
+    </aside>
 
     <div class="callouts">
       <div class="callout">

@@ -434,6 +434,58 @@ const RESULTS_DOMAIN = [
 ];
 const RESULTS_DOMAIN_AVG = ["Full Percept-V", 55.22, 31.65, 52.7, 50.75, 66.92, 34.48, 18.1, 6.43, 39.53];
 
+/* Frontier reference models — NOT part of the paper. Evaluated after publication with the
+   same prompts, scoring and zero-shot protocol, to see where the absolute state of the art stands.
+   Kept separate so the paper's columns and "Avg." stay exactly as published.
+   Values: [Gemini 3.5 Flash, Gemini 3.8 Flash], keyed by the row name used above. */
+const FRONTIER_MODELS = [
+  { key: "gemini35flash", label: "Gemini 3.5 Flash", head: ["Gemini", "3.5 Flash"] },
+  { key: "gemini38flash", label: "Gemini 3.8 Flash", head: ["Gemini", "3.8 Flash"] }
+];
+
+const FRONTIER_RESULTS = {
+  "Visual Discrimination":       [89.95, 94.45],
+  "Visual Memory":               [83.45, 85.05],
+  "Visual Sequential Memory":    [77.08, 86.58],
+  "Visual Figure Ground":        [83.5,  88.83],
+  "Visual Form Constancy":       [96.5,  99.5],
+  "Visual Closure":              [65.75, 80.0],
+  "Visual Spatial Relationship": [99.64, 99.57],
+  "Average of skills":           [85.13, 90.57],
+
+  change_colour:          [99.5, 100],
+  circle_boxes:           [97,   99],
+  circle_location:        [99,   99],
+  circle_right_triangle:  [100,  100],
+  colours_present:        [8.5,  8.5],
+  comparing_size:         [100,  100],
+  count_coloured_circles: [100,  100],
+  counting_circles:       [100,  100],
+  counting_locations:     [100,  100],
+  counting_shapes:        [100,  100],
+  cross_and_knots:        [100,  100],
+  graph_counting:         [71.5, 70],
+  grid_path:              [99.5, 99.5],
+  identifying_shapes:     [100,  100],
+  inside_circles:         [98.5, 98],
+  layered_colours:        [80,   98],
+  layered_shapes:         [29,   36],
+  list_colours:           [92,   99],
+  list_shapes:            [100,  100],
+  locate_circles_colour:  [100,  100],
+  locate_circles_shape:   [100,  100],
+  match_outline:          [100,  100],
+  match_shadow:           [54,   86],
+  maze_solving:           [100,  100],
+  mirror_image:           [88,   98.5],
+  numbered_shapes:        [100,  100],
+  sort_circles:           [59,   59.5],
+  sort_lines:             [90,   99.5],
+  vanishing_objects:      [97,   99.5],
+  water_image:            [94.5, 99],
+  "Full Percept-V":       [88.57, 91.63]
+};
+
 /* Table 6: human study (same samples, same protocol). */
 const HUMAN_STUDY = [
   ["Human",       95.43, true],
